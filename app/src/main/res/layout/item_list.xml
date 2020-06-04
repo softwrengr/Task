@@ -121,6 +121,15 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="[Name]" />
 
+                <TextView
+                    android:id="@+id/text_lock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/card_radius_minimum"
+                    android:layout_marginEnd="@dimen/standard_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="[lock]" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

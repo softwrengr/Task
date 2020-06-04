@@ -46,8 +46,7 @@ class CustomRepository(applicationContext: Application) : BaseRepository {
 
     private fun convertList(customEntity: List<CustomEntity>) : MutableList<ItemModel> {
         val itemList = mutableListOf<ItemModel>()
-        customEntity.map { itemList.add(ItemModel(it.id?:0, it.name?:"")) }
-
+        customEntity.map { itemList.add(ItemModel(it.id?:0, it.name?:"",it.lock?:0)) }
         return itemList
     }
 }

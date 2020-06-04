@@ -10,8 +10,8 @@ data class CustomEntity(
     @ColumnInfo(name = "Name")
     var name : String? = null,
 
-    @ColumnInfo(name = "Icon")
-    var icon : Int? = null
+    @ColumnInfo(name = "lock")
+    var lock : Int? = null
 )
 {
     @PrimaryKey(autoGenerate = true)

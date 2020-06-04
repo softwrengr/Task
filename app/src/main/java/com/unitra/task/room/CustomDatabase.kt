@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities = [CustomEntity::class],
-    version = 1
+    version = 2
 )
 abstract class CustomDatabase : RoomDatabase() {
 
@@ -34,10 +34,6 @@ abstract class CustomDatabase : RoomDatabase() {
             return instance
         }
 
-        fun destroyInstance() {
-            instance = null
-        }
-
         private val roomCallback: Callback = object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
@@ -50,11 +46,11 @@ abstract class CustomDatabase : RoomDatabase() {
             private val customDAO = db?.customDao()
 
             override fun doInBackground(vararg param: Unit) {
-                customDAO?.insert(CustomEntity("item 0"))
-                customDAO?.insert(CustomEntity("item 1"))
-                customDAO?.insert(CustomEntity("item 2"))
-                customDAO?.insert(CustomEntity("item 3"))
-                customDAO?.insert(CustomEntity("item 4"))
+                customDAO?.insert(CustomEntity("item 0",1))
+                customDAO?.insert(CustomEntity("item 1",0))
+                customDAO?.insert(CustomEntity("item 2",0))
+                customDAO?.insert(CustomEntity("item 3",0))
+                customDAO?.insert(CustomEntity("item 4",0))
             }
         }
     }
