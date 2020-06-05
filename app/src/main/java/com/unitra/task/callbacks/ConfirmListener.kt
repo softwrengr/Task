@@ -2,7 +2,7 @@ package com.unitra.task.callbacks
 
 import com.unitra.task.models.ItemModel
 
-interface ClickListener {
+interface ConfirmListener {
 
-    fun onUpdate(item : ItemModel, position: Int)
+    fun onUpdate(confirm: String)
 }

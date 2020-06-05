@@ -1,9 +1,10 @@
 package com.unitra.task
 
+import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,10 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unitra.task.adapter.ItemAdapter
 import com.unitra.task.callbacks.ClickListener
 import com.unitra.task.databinding.MainBinder
+import com.unitra.task.models.ItemModel
 import com.unitra.task.viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity(){
-
+class MainActivity : AppCompatActivity() {
+    val UNLOCK_REQUEST = 1
     private lateinit var binding: MainBinder
     private lateinit var viewModel: MainViewModel
     private var adapter: ItemAdapter? = null
@@ -42,22 +44,38 @@ class MainActivity : AppCompatActivity(){
             Observer { list ->
                 binding.recyclerView.apply {
                     layoutManager = LinearLayoutManager(this@MainActivity)
-                    adapter = ItemAdapter(list,callBack)
+                    adapter = ItemAdapter(list, callBack)
                 }
 
             })
-    }
 
+
+    }
 
     private val callBack = object : ClickListener {
-        override fun onClickListener(item: Int?) {
-          if(item==1){
-              val intent = Intent(this@MainActivity, SecondActivity::class.java)
-              startActivity(intent)
-          }else{
-              Toast.makeText(this@MainActivity,"item is lock",Toast.LENGTH_SHORT).show()
-          }
+        override fun onUpdate(item: ItemModel, position: Int) {
+            if (item.lock == 1) {
+                startActivityForResult(Intent(this@MainActivity, SecondActivity::class.java), 1)
+
+            } else {
+                Toast.makeText(this@MainActivity, "item is lock", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == UNLOCK_REQUEST && resultCode == Activity.RESULT_OK) {
+            val checkUnlock = data?.getBooleanExtra("unlock", false)
+
+            if(checkUnlock!!){
+                viewModel.updateItem(ItemModel(2,"",1))
+                viewModel.getUpdate()
+            }
+        }
+
+    }
+
 
 }

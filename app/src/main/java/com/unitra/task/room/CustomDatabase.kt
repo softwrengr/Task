@@ -27,31 +27,11 @@ abstract class CustomDatabase : RoomDatabase() {
                         CustomDatabase::class.java, "items_database"
                     )
                         .fallbackToDestructiveMigration()
-                        .addCallback(roomCallback)
+
                         .build()
                 }
             }
             return instance
-        }
-
-        private val roomCallback: Callback = object : RoomDatabase.Callback() {
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
-                PopulateDbAsyncTask(instance).execute()
-            }
-
-        }
-
-        class PopulateDbAsyncTask(db: CustomDatabase?) : AsyncTask<Unit, Unit, Unit>() {
-            private val customDAO = db?.customDao()
-
-            override fun doInBackground(vararg param: Unit) {
-                customDAO?.insert(CustomEntity("item 0",1))
-                customDAO?.insert(CustomEntity("item 1",0))
-                customDAO?.insert(CustomEntity("item 2",0))
-                customDAO?.insert(CustomEntity("item 3",0))
-                customDAO?.insert(CustomEntity("item 4",0))
-            }
         }
     }
 }
