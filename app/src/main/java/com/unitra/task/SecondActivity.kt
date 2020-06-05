@@ -7,19 +7,18 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.provider.FontsContractCompat.FontRequestCallback.RESULT_OK
+import androidx.databinding.DataBindingUtil
 import androidx.media.MediaBrowserServiceCompat.RESULT_OK
+import com.unitra.task.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity() {
-
-    public val itemUnlock:Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+        val binding: ActivitySecondBinding = DataBindingUtil.setContentView(this, R.layout.activity_second)
 
-        val btnConfirm:Button = findViewById(R.id.btn_confirm)
-
-        btnConfirm.setOnClickListener{
+        binding.btnConfirm.setOnClickListener{
             sendData()
         }
     }
@@ -32,7 +31,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        sendData()
+        //sendData()
         super.onBackPressed()
     }
 

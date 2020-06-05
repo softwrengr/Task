@@ -11,7 +11,7 @@ import com.unitra.task.room.CustomEntity
 class CustomRepository(applicationContext: Application) : BaseRepository {
 
 
-    private lateinit var customDao : CustomDAO
+    private var customDao : CustomDAO
 
     companion object {
         @Volatile private var INSTANCE  : CustomRepository? = null
@@ -26,7 +26,7 @@ class CustomRepository(applicationContext: Application) : BaseRepository {
         customDao = database!!.customDao()
     }
 
-    //region CRUD Operation
+
     override fun insert(customEntity: CustomEntity) {
         AsyncTask.execute {
             customDao.insert(
@@ -52,5 +52,5 @@ class CustomRepository(applicationContext: Application) : BaseRepository {
     fun getAll() : LiveData<List<CustomEntity>> {
         return customDao.getAll()
     }
-    //endregion
+
 }

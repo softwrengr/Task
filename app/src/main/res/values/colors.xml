@@ -6,6 +6,7 @@
 
     <color name="background_material_dark_gray">#EEEEEE</color>
 
+    <color name="color_white">#FFF</color>
     <color name="card_state_normal">#FFE</color>
     <color name="card_state_focused">#CCC</color>
     <color name="card_state_selected">#0055A5</color>

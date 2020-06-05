@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Task</string>
     <string name="image">Image</string>
+    <string name="insert">Insert</string>
+    <string name="delete">Delete</string>
+    <string name="confirm">Confirm</string>
 </resources>

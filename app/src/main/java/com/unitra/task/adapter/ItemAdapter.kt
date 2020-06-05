@@ -26,7 +26,7 @@ class ItemAdapter(private val list: List<ItemModel>,private val listener: ClickL
 
 
         holder.cardview?.setOnClickListener{
-            listener.onUpdate(model,0);
+            listener.onUpdate(model,position);
 
         }
 

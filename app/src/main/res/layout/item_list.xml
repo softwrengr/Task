@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="customModel"
             type="com.unitra.task.models.ItemModel" />
@@ -23,23 +24,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
+            style="@style/CardView.Light"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="@color/card_state_normal"
-            app:cardCornerRadius="@dimen/card_radius"
-            app:cardElevation="@dimen/card_elevation_minimum"
-            app:cardMaxElevation="@dimen/card_elevation"
             app:cardUseCompatPadding="false"
-            android:layout_marginStart="@dimen/standard_margin"
-            android:layout_marginEnd="@dimen/standard_margin"
-            android:layout_marginTop="@dimen/standard_margin"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardMaxElevation="@dimen/card_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginEnd="@dimen/standard_margin"
+            app:cardElevation="@dimen/card_elevation_minimum">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -97,21 +97,8 @@
                     android:orientation="horizontal"
                     app:layout_constraintGuide_percent="0.95" />
                 <!--endregion-->
-                <!--endregion-->
 
-                <ImageView
-                    android:id="@+id/image_view"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:contentDescription="@string/image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="@id/constraint_guideline_lead_quarter_vertical"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/ic_launcher_foreground" />
-
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,7 +106,8 @@
                     app:layout_constraintEnd_toEndOf="@id/constraint_guideline_trail_quarter_vertical"
                     app:layout_constraintStart_toStartOf="@id/constraint_guideline_lead_quarter_vertical"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="[Name]" />
+                    android:textStyle="bold"
+                    tools:text="Name" />
 
                 <TextView
                     android:id="@+id/text_lock"

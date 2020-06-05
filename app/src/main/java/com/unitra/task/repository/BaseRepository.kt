@@ -8,6 +8,5 @@ interface BaseRepository {
 
     fun  update()
 
-
     fun  deleteAll()
 }

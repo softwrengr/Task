@@ -9,19 +9,15 @@ import com.unitra.task.models.ItemModel
 import com.unitra.task.repository.CustomRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
-    private lateinit var customRepository : CustomRepository
-    private lateinit var liveList : MutableLiveData<MutableList<ItemModel>>
-    private lateinit var liveUpdate : MutableLiveData<ItemModel>
+    private  var customRepository : CustomRepository = CustomRepository.getInstance(application)
+    private  var liveList : MutableLiveData<MutableList<ItemModel>> = MutableLiveData()
+    private  var liveUpdate : MutableLiveData<ItemModel> = MutableLiveData()
 
     init {
-        customRepository = CustomRepository.getInstance(application)
-        liveList = MutableLiveData()
-        liveUpdate = MutableLiveData()
         setItems()
     }
 
-  
-    @Deprecated("For Static Data")
+
     fun setItems() {
         customRepository.deleteAll()
         customRepository.insert(ConvertList.toEntity(ItemModel(0,"item 1",1)))
@@ -31,17 +27,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         customRepository.insert(ConvertList.toEntity(ItemModel(4,"item 5",0)))
     }
 
-
-    fun getUpdate() : LiveData<ItemModel> {
-        return liveUpdate
-    }
-
-    fun insertItem(item : ItemModel) {
-        customRepository.insert(
-            ConvertList.toEntity(item)
-        )
-    }
-
     fun updateItem(item : ItemModel) {
         liveUpdate.value = item
         liveUpdate.value?.let {
@@ -49,13 +34,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-
     fun deleteAll() {
         customRepository.deleteAll()
     }
 
     fun getItems() : LiveData<MutableList<ItemModel>> {
-        //return  liveList
         return ConvertList.toLiveDataListModel(
             customRepository.getAll()
         )
