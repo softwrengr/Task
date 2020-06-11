@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == UNLOCK_REQUEST && resultCode == Activity.RESULT_OK) {
             val checkUnlock = data?.getBooleanExtra("unlock", false)
             if (checkUnlock!!) {
+                Toast.makeText(this@MainActivity, "item 2", Toast.LENGTH_SHORT).show()
                 viewModel.updateItem(ItemModel(1, "item 2", 1))
             }
         }
